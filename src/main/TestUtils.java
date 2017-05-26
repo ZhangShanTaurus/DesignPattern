@@ -4,6 +4,9 @@ import observer.ConcreteSubject;
 import observer.IObserver;
 import observer.ISubject;
 import observer.ConcreteObserver;
+import simple_factory.IProduct;
+import simple_factory.ProductType;
+import simple_factory.SimpleFactory;
 import singleton.DoubleCheckSingleton;
 import singleton.EnumSingleton;
 import singleton.SingletonHolder;
@@ -58,5 +61,15 @@ public class TestUtils {
         subject.notifyObserver(msg);//通知观察者
         subject.removeObserver(wangwu);//移除观察者
         subject.notifyObserver(msg);
+    }
+
+    protected static void testSimpleFactory() {
+        SimpleFactory factory = new SimpleFactory();
+        try {
+            IProduct product = factory.getProduct(ProductType.PRODUCT_D);
+            product.getProduct();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
