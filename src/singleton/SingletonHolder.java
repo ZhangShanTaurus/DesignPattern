@@ -1,6 +1,7 @@
 package singleton;
 
 /**
+ * 静态内部类模式单例
  * Created by zhangss on 2017/5/26.
  */
 public class SingletonHolder {
