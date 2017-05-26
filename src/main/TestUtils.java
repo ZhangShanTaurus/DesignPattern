@@ -1,12 +1,15 @@
 package main;
 
+import factory_method.FactoryFood;
+import factory_method.FactoryWater;
+import factory_method.IFactory;
 import observer.ConcreteSubject;
 import observer.IObserver;
 import observer.ISubject;
 import observer.ConcreteObserver;
-import simple_factory.IProduct;
-import simple_factory.ProductType;
-import simple_factory.SimpleFactory;
+import factory_simple.IProduct;
+import factory_simple.ProductType;
+import factory_simple.SimpleFactory;
 import singleton.DoubleCheckSingleton;
 import singleton.EnumSingleton;
 import singleton.SingletonHolder;
@@ -68,6 +71,26 @@ public class TestUtils {
         try {
             IProduct product = factory.getProduct(ProductType.PRODUCT_D);
             product.getProduct();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    protected static void testFactoryMethod() {
+        IFactory factoryFood = new FactoryFood();
+        IFactory factoryWater = new FactoryWater();
+        try {
+            factory_method.IProduct productFood = factoryFood.
+                    createProduct(factory_method.ProductType.PRODUCT_FOOT_CHICKEN);
+            productFood.getProduct();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            factory_method.IProduct productWater = factoryWater.
+                    createProduct(factory_method.ProductType.PRODUCT_WATER_BITTER);
+            productWater.getProduct();
         } catch (Exception e) {
             e.printStackTrace();
         }
