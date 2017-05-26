@@ -1,5 +1,8 @@
 package main;
 
+import factory_abstract.CreateClothes;
+import factory_abstract.FactoryCasual;
+import factory_abstract.FactorySport;
 import factory_method.FactoryFood;
 import factory_method.FactoryWater;
 import factory_method.IFactory;
@@ -94,5 +97,13 @@ public class TestUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    protected static void testFactoryAbstract() {
+        factory_abstract.IFactory factoryCasual = new FactoryCasual();//休闲装
+        factory_abstract.IFactory factorySport = new FactorySport();//运动装
+        CreateClothes shapeColor = new CreateClothes(factorySport);
+        shapeColor.printClothesInfo();
     }
 }
