@@ -1,14 +1,13 @@
-package simple_factory;
+package factory_method;
 
 /**
- * 抽象产品接口
+ * 抽象产品
  * Created by zhangss on 2017/5/26.
  */
 public interface IProduct {
 
     /**
-     * 获取产品
+     * 获得产品
      */
     void getProduct();
-
 }

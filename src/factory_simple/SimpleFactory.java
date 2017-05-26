@@ -1,4 +1,4 @@
-package simple_factory;
+package factory_simple;
 
 /**
  * 简单工厂
