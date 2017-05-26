@@ -4,6 +4,7 @@ package strategy;
  * 策略接口
  * Created by zhangss on 2017/5/26.
  */
+@FunctionalInterface
 public interface IStrategy {
 
     /**
