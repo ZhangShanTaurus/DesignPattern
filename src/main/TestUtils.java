@@ -1,11 +1,13 @@
 package main;
 
+import observer.ConcreteSubject;
+import observer.IObserver;
+import observer.ISubject;
+import observer.ConcreteObserver;
 import singleton.DoubleCheckSingleton;
 import singleton.EnumSingleton;
 import singleton.SingletonHolder;
-import strategy.AddStrategy;
-import strategy.Context;
-import strategy.IStrategy;
+import strategy.*;
 
 /**
  * 测试工具类
@@ -36,8 +38,25 @@ public class TestUtils {
         System.out.println();
     }
 
-    static void testStrategy(IStrategy strategy, int a, int b) {
-        Context context = new Context(strategy);
+    static void testStrategy(int a, int b) {
+        IStrategy addStrategy = new AddStrategy();
+        IStrategy subStrategy = new SubStrategy();
+        IStrategy multiStrategy = new MultiStrategy();
+        IStrategy divStrategy = new DivStrategy();
+        Context context = new Context(addStrategy);
         int result = context.getResult(a, b);
+    }
+
+    protected static void testObserver(String msg) {
+        ISubject subject = new ConcreteSubject();
+        IObserver zhangSan = new ConcreteObserver("张三");
+        IObserver lisi = new ConcreteObserver("李四");
+        IObserver wangwu = new ConcreteObserver("王五");
+        subject.addObserver(zhangSan);//注册观察者
+        subject.addObserver(lisi);
+        subject.addObserver(wangwu);
+        subject.notifyObserver(msg);//通知观察者
+        subject.removeObserver(wangwu);//移除观察者
+        subject.notifyObserver(msg);
     }
 }
