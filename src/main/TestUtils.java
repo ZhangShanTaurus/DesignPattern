@@ -13,6 +13,10 @@ import observer.ConcreteObserver;
 import factory_simple.IProduct;
 import factory_simple.ProductType;
 import factory_simple.SimpleFactory;
+import proxy_static.Customer;
+import proxy_static.IToyMaker;
+import proxy_static.ToyMakerImp2;
+import proxy_static.ToyMakerProxy;
 import singleton.DoubleCheckSingleton;
 import singleton.EnumSingleton;
 import singleton.SingletonHolder;
@@ -105,5 +109,16 @@ public class TestUtils {
         factory_abstract.IFactory factorySport = new FactorySport();//运动装
         CreateClothes shapeColor = new CreateClothes(factorySport);
         shapeColor.printClothesInfo();
+    }
+
+    protected static void testProxy() {
+        Customer customer = new Customer("李四");
+        ToyMakerProxy proxy = new ToyMakerProxy();
+        proxy.sellBarbie(customer);
+        proxy.sellTeddy(customer);
+        IToyMaker maker = new ToyMakerImp2("浩海生产者");
+        proxy.setToyMaker(maker);
+        proxy.sellTeddy(customer);
+        proxy.sellBarbie(customer);
     }
 }

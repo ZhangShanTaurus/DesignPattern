@@ -8,6 +8,7 @@ public class Main {
 //        TestUtils.testObserver("主题变化了");
 //        TestUtils.testSimpleFactory();
 //        TestUtils.testFactoryMethod();
-        TestUtils.testFactoryAbstract();
+//        TestUtils.testFactoryAbstract();
+        TestUtils.testProxy();
     }
 }
