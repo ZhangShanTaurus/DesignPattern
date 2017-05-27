@@ -13,6 +13,9 @@ import observer.ConcreteObserver;
 import factory_simple.IProduct;
 import factory_simple.ProductType;
 import factory_simple.SimpleFactory;
+import proxy_dynamic.InvocationHandlerImp;
+import proxy_dynamic.RealRiceMaker;
+import proxy_dynamic.IRiceMaker;
 import proxy_static.Customer;
 import proxy_static.IToyMaker;
 import proxy_static.ToyMakerImp2;
@@ -21,6 +24,8 @@ import singleton.DoubleCheckSingleton;
 import singleton.EnumSingleton;
 import singleton.SingletonHolder;
 import strategy.*;
+
+import java.lang.reflect.Proxy;
 
 /**
  * 测试工具类
@@ -120,5 +125,15 @@ public class TestUtils {
         proxy.setToyMaker(maker);
         proxy.sellTeddy(customer);
         proxy.sellBarbie(customer);
+    }
+
+    protected static void testProxyDynamic() {
+        IRiceMaker riceMaker = new RealRiceMaker();
+        InvocationHandlerImp invocationHandlerImp = new InvocationHandlerImp(riceMaker);
+        IRiceMaker proxy = (IRiceMaker) Proxy.newProxyInstance(riceMaker.getClass().getClassLoader(), riceMaker.getClass().getInterfaces(), invocationHandlerImp);
+        int quantity = proxy.makeRice(10);
+        String riceName = proxy.getRiceName();
+        System.out.println("客户:我最终买了" + quantity + "斤" + riceName);
+
     }
 }
