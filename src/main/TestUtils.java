@@ -132,7 +132,8 @@ public class TestUtils {
         InvocationHandlerImp invocationHandlerImp = new InvocationHandlerImp(riceMaker);
         IRiceMaker proxy = (IRiceMaker) Proxy.newProxyInstance(riceMaker.getClass().getClassLoader(), riceMaker.getClass().getInterfaces(), invocationHandlerImp);
         int quantity = proxy.makeRice(10);
-        System.out.println();
-        String name = proxy.getRiceName();
+        String riceName = proxy.getRiceName();
+        System.out.println("客户:我最终买了" + quantity + "斤" + riceName);
+
     }
 }
