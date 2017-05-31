@@ -1,5 +1,6 @@
 package main;
 
+import builder.*;
 import factory_abstract.CreateClothes;
 import factory_abstract.FactoryCasual;
 import factory_abstract.FactorySport;
@@ -134,6 +135,23 @@ public class TestUtils {
         int quantity = proxy.makeRice(10);
         String riceName = proxy.getRiceName();
         System.out.println("客户:我最终买了" + quantity + "斤" + riceName);
+    }
 
+    protected static void testBuilder() {
+        Director director;
+        Product product;
+        IBuilder<Product> builder;
+        //建造房子
+        builder = new HouseBuilder();
+        director = new Director(builder);
+        director.construct();
+        product = builder.getResult();
+        product.showInfo();
+        //建造做饭
+        builder = new CookBuilder();
+        director = new Director(builder);
+        director.construct();
+        product = builder.getResult();
+        product.showInfo();
     }
 }
