@@ -1,5 +1,8 @@
 package main;
 
+import adapter.AdapterClass;
+import adapter.AdapterObj;
+import adapter.Target;
 import builder.*;
 import factory_abstract.CreateClothes;
 import factory_abstract.FactoryCasual;
@@ -222,4 +225,13 @@ public class TestUtils {
         System.out.println("原型对象与深拷贝对象的House对象是否相等:" + user.getHouse().equals(deep.getHouse()));
     }
 
+    protected static void testAdapter() {
+        Target adapterClass = new AdapterClass();
+        adapterClass.requestWater();
+        adapterClass.requestAir();
+
+        Target adapterObj = new AdapterObj();
+        adapterObj.requestWater();
+        adapterObj.requestAir();
+    }
 }
