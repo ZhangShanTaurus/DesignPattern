@@ -14,6 +14,8 @@ import observer.ConcreteObserver;
 import factory_simple.IProduct;
 import factory_simple.ProductType;
 import factory_simple.SimpleFactory;
+import prototype.House;
+import prototype.UserPrototype;
 import proxy_dynamic.InvocationHandlerImp;
 import proxy_dynamic.RealRiceMaker;
 import proxy_dynamic.IRiceMaker;
@@ -26,6 +28,7 @@ import singleton.EnumSingleton;
 import singleton.SingletonHolder;
 import strategy.*;
 
+import java.io.IOException;
 import java.lang.reflect.Proxy;
 
 /**
@@ -154,4 +157,69 @@ public class TestUtils {
         product = builder.getResult();
         product.showInfo();
     }
+
+    protected static void testPrototype() {
+        testShallowPrototype();
+        System.out.println();
+        testDeepPrototype();
+        System.out.println();
+        testSerializePrototype();
+    }
+
+    protected static void testShallowPrototype() {
+        House house = new House("北京");
+        UserPrototype user = new UserPrototype("张三", 25, house);
+        UserPrototype shallow = user.shallowClone();//浅拷贝
+        System.out.println("测试浅拷贝");
+        System.out.println("原型:   " + user.toString());
+        System.out.println("浅拷贝: " + shallow.toString());
+        System.out.println("更改浅拷贝对象属性");
+        shallow.setAge(10);
+        shallow.setName("李四");
+        shallow.getHouse().setAddress("河北");
+        System.out.println("原型:   " + user.toString());
+        System.out.println("浅拷贝: " + shallow.toString());
+        System.out.println("原型对象与浅拷贝对象的House对象是否相等:" + user.getHouse().equals(shallow.getHouse()));
+
+    }
+
+    protected static void testDeepPrototype() {
+        House house = new House("北京");
+        UserPrototype user = new UserPrototype("张三", 25, house);
+        UserPrototype deep = user.deepCloneByClone();//深拷贝
+        System.out.println("测试Cloneable方式的深拷贝");
+        System.out.println("原型:   " + user.toString());
+        System.out.println("深拷贝: " + deep.toString());
+        System.out.println("更改深拷贝对象属性");
+        deep.setAge(10);
+        deep.setName("李四");
+        deep.getHouse().setAddress("河北");
+        System.out.println("原型:   " + user.toString());
+        System.out.println("深拷贝: " + deep.toString());
+        System.out.println("原型对象与深拷贝对象的House对象是否相等:" + user.getHouse().equals(deep.getHouse()));
+    }
+
+    protected static void testSerializePrototype() {
+        House house = new House("北京");
+        UserPrototype user = new UserPrototype("张三", 25, house);
+        UserPrototype deep;//深拷贝
+        try {
+            deep = user.deepCloneBySerializable();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("拷贝失败，创建拷贝对象");
+            deep = new UserPrototype("李四", 20, house);
+        }
+        System.out.println("测试Serializable方式的深拷贝");
+        System.out.println("原型:   " + user.toString());
+        System.out.println("深拷贝: " + deep.toString());
+        System.out.println("更改深拷贝对象属性");
+        deep.setAge(10);
+        deep.setName("李四");
+        deep.getHouse().setAddress("河北");
+        System.out.println("原型:   " + user.toString());
+        System.out.println("深拷贝: " + deep.toString());
+        System.out.println("原型对象与深拷贝对象的House对象是否相等:" + user.getHouse().equals(deep.getHouse()));
+    }
+
 }
