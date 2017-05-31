@@ -4,6 +4,7 @@ import adapter.AdapterClass;
 import adapter.AdapterObj;
 import adapter.Target;
 import builder.*;
+import decorator.*;
 import factory_abstract.CreateClothes;
 import factory_abstract.FactoryCasual;
 import factory_abstract.FactorySport;
@@ -233,5 +234,17 @@ public class TestUtils {
         Target adapterObj = new AdapterObj();
         adapterObj.requestWater();
         adapterObj.requestAir();
+    }
+
+    protected static void testDecorator() {
+        Component component = new ConcreteComponent();
+        Decorator decorator;
+        decorator = new DecoratorHair(component);//为组件进行装饰头发
+        decorator.decorator();
+        decorator = new DecoratorShoes(component);//为组件进行装饰鞋子
+        decorator.decorator();
+        decorator = new DecoratorCoat(decorator);//装饰器也可以装饰具体的装饰对象
+        decorator.decorator();
+        ((ConcreteComponent) component).showOperation();//展示装饰信息
     }
 }
