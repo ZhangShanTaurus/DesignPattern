@@ -13,6 +13,7 @@ public class Main {
 //        TestUtils.testProxyDynamic();
 //        TestUtils.testBuilder();
 //        TestUtils.testPrototype();
-        TestUtils.testAdapter();
+//        TestUtils.testAdapter();
+        TestUtils.testDecorator();
     }
 }
