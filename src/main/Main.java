@@ -11,6 +11,7 @@ public class Main {
 //        TestUtils.testFactoryAbstract();
 //        TestUtils.testProxy();
 //        TestUtils.testProxyDynamic();
-        TestUtils.testBuilder();
+//        TestUtils.testBuilder();
+        TestUtils.testPrototype();
     }
 }
