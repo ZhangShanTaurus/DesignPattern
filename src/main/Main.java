@@ -10,6 +10,7 @@ public class Main {
 //        TestUtils.testFactoryMethod();
 //        TestUtils.testFactoryAbstract();
 //        TestUtils.testProxy();
-        TestUtils.testProxyDynamic();
+//        TestUtils.testProxyDynamic();
+        TestUtils.testBuilder();
     }
 }
