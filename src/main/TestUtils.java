@@ -5,6 +5,9 @@ import adapter.AdapterObj;
 import adapter.Target;
 import builder.*;
 import decorator.*;
+import facade.FacadeGoOut;
+import facade.FacadeSleep;
+import facade.IFacade;
 import factory_abstract.CreateClothes;
 import factory_abstract.FactoryCasual;
 import factory_abstract.FactorySport;
@@ -246,5 +249,14 @@ public class TestUtils {
         decorator = new DecoratorCoat(decorator);//装饰器也可以装饰具体的装饰对象
         decorator.decorator();
         ((ConcreteComponent) component).showOperation();//展示装饰信息
+    }
+
+    protected static void testFacade() {
+        IFacade facadeSleep = new FacadeSleep();
+        facadeSleep.close();
+        facadeSleep.open();
+        IFacade facadeGoOut = new FacadeGoOut();
+        facadeGoOut.close();
+        facadeGoOut.open();
     }
 }
