@@ -15,6 +15,7 @@ public class Main {
 //        TestUtils.testPrototype();
 //        TestUtils.testAdapter();
 //        TestUtils.testDecorator();
-        TestUtils.testFacade();
+//        TestUtils.testFacade();
+        TestUtils.testBridge();
     }
 }
