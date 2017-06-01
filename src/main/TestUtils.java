@@ -3,6 +3,7 @@ package main;
 import adapter.AdapterClass;
 import adapter.AdapterObj;
 import adapter.Target;
+import bridge.*;
 import builder.*;
 import decorator.*;
 import facade.FacadeGoOut;
@@ -258,5 +259,16 @@ public class TestUtils {
         IFacade facadeGoOut = new FacadeGoOut();
         facadeGoOut.close();
         facadeGoOut.open();
+    }
+
+    protected static void testBridge() {
+        //使用毛笔在油画纸上画画
+        AbstractionPaper oilPaintingPaper = new OilPaintingPaper();
+        oilPaintingPaper.setImplementor(new BrushPaint());
+        oilPaintingPaper.draw();
+        //使用钢笔在A4纸上画画
+        AbstractionPaper a4Pager = new A4Pager();
+        a4Pager.setImplementor(new FountainPaint());
+        a4Pager.draw();
     }
 }
