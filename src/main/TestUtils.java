@@ -19,6 +19,9 @@ import factory_method.IFactory;
 import factory_simple.IProduct;
 import factory_simple.ProductType;
 import factory_simple.SimpleFactory;
+import flyweight.Direction;
+import flyweight.Flyweight;
+import flyweight.FlyweightFactory;
 import observer.ConcreteObserver;
 import observer.ConcreteSubject;
 import observer.IObserver;
@@ -39,6 +42,8 @@ import strategy.*;
 
 import java.io.IOException;
 import java.lang.reflect.Proxy;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 测试工具类
@@ -276,5 +281,27 @@ public class TestUtils {
 
     public static void testComposite() {
         FakeUtil.addFakeData();
+    }
+
+    protected static void testFlyweight() {
+        FlyweightFactory flyweightFactory = FlyweightFactory.getInstance();
+        Flyweight flyweight1 = flyweightFactory.getFlyweight(Direction.EAST);
+        flyweight1.operation("东方");
+        Flyweight flyweight2 = flyweightFactory.getFlyweight(Direction.WEST);
+        flyweight2.operation("西方");
+        Flyweight flyweight3 = flyweightFactory.getFlyweight(Direction.WEST);
+        flyweight3.operation("西方");
+        System.out.println("单纯享元角色是否可以共享:" + (flyweight2 == flyweight3));
+
+        List<Direction> directionList = new ArrayList<>();
+        directionList.add(Direction.NORTH);
+        directionList.add(Direction.SOUTH);
+        Flyweight flyweight4 = flyweightFactory.getCompositeFlyweight(directionList);
+        flyweight4.operation("复合对象:南方、北方");
+        Flyweight flyweight5 = flyweightFactory.getCompositeFlyweight(directionList);
+        flyweight5.operation("复合对象:南方、北方");
+        System.out.println("复合享元角色是否可以共享:" + (flyweight4 == flyweight5));
+
+        System.out.println("享元角色数量为:" + flyweightFactory.getFlyweightCount());
     }
 }
