@@ -5,6 +5,7 @@ import adapter.AdapterObj;
 import adapter.Target;
 import bridge.*;
 import builder.*;
+import composite.FakeUtil;
 import decorator.*;
 import facade.FacadeGoOut;
 import facade.FacadeSleep;
@@ -15,18 +16,18 @@ import factory_abstract.FactorySport;
 import factory_method.FactoryFood;
 import factory_method.FactoryWater;
 import factory_method.IFactory;
-import observer.ConcreteSubject;
-import observer.IObserver;
-import observer.ISubject;
-import observer.ConcreteObserver;
 import factory_simple.IProduct;
 import factory_simple.ProductType;
 import factory_simple.SimpleFactory;
+import observer.ConcreteObserver;
+import observer.ConcreteSubject;
+import observer.IObserver;
+import observer.ISubject;
 import prototype.House;
 import prototype.UserPrototype;
+import proxy_dynamic.IRiceMaker;
 import proxy_dynamic.InvocationHandlerImp;
 import proxy_dynamic.RealRiceMaker;
-import proxy_dynamic.IRiceMaker;
 import proxy_static.Customer;
 import proxy_static.IToyMaker;
 import proxy_static.ToyMakerImp2;
@@ -270,5 +271,10 @@ public class TestUtils {
         AbstractionPaper a4Pager = new A4Pager();
         a4Pager.setImplementor(new FountainPaint());
         a4Pager.draw();
+    }
+
+
+    public static void testComposite() {
+        FakeUtil.addFakeData();
     }
 }
