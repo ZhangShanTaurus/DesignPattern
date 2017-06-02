@@ -6,6 +6,7 @@ import adapter.Target;
 import bridge.*;
 import builder.*;
 import chain_of_responsibility.*;
+import command.*;
 import composite.FakeUtil;
 import decorator.*;
 import facade.FacadeGoOut;
@@ -337,5 +338,23 @@ public class TestUtils {
         handlerLow.handleRequest(requestHigh);
         handlerLow.handleRequest(requestNoLevel);
         handlerHigh.handleRequest(requestLow);
+    }
+
+    protected static void testCommand() {
+        Invoke invoke = new Invoke();//命令调用者
+        IReceiver receiver;//命令执行者
+        ConcreteCommand command;//具体命令
+
+        receiver = new ReceiverImp("热菜厨师");
+        command = new ConcreteCommand();
+        command.setReceiver(receiver);
+        invoke.setCommand(command);
+        invoke.executeCommand("炒热菜");
+
+        receiver = new ReceiverImp("凉菜厨师");
+        command = new ConcreteCommand();
+        command.setReceiver(receiver);
+        invoke.setCommand(command);
+        invoke.executeCommand("拌凉菜");
     }
 }
