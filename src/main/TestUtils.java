@@ -5,6 +5,7 @@ import adapter.AdapterObj;
 import adapter.Target;
 import bridge.*;
 import builder.*;
+import chain_of_responsibility.*;
 import composite.FakeUtil;
 import decorator.*;
 import facade.FacadeGoOut;
@@ -315,5 +316,26 @@ public class TestUtils {
         System.out.println();
         abstractClass = new ConcreteClassB();
         abstractClass.templateMethod();
+    }
+
+    protected static void testChain() {
+        // 创建指责链的所有节点
+        AbstractHandler handlerLow = new HandlerLow();
+        AbstractHandler handlerMiddle = new HandlerMiddle();
+        AbstractHandler handlerHigh = new HandlerHigh();
+        // 进行链的组装，即头尾相连，一层套一层
+        handlerLow.setNextHandler(handlerMiddle);
+        handlerMiddle.setNextHandler(handlerHigh);
+        // 创建请求并提交到指责链中进行处理
+        AbstractRequest requestLow = new RequestLow("低级请求");
+        AbstractRequest requestMiddle = new RequestMiddle("中级请求");
+        AbstractRequest requestHigh = new RequestHigh("高级请求");
+        AbstractRequest requestNoLevel = new RequestNoLevel("无级别请求");
+        // 每次提交都是从链头开始遍历
+        handlerLow.handleRequest(requestLow);
+        handlerLow.handleRequest(requestMiddle);
+        handlerLow.handleRequest(requestHigh);
+        handlerLow.handleRequest(requestNoLevel);
+        handlerHigh.handleRequest(requestLow);
     }
 }

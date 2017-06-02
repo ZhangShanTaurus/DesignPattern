@@ -19,6 +19,7 @@ public class Main {
 //        TestUtils.testBridge();
 //        TestUtils.testComposite();
 //        TestUtils.testFlyweight();
-        TestUtils.testTemplate();
+//        TestUtils.testTemplate();
+        TestUtils.testChain();
     }
 }
