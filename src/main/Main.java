@@ -20,6 +20,7 @@ public class Main {
 //        TestUtils.testComposite();
 //        TestUtils.testFlyweight();
 //        TestUtils.testTemplate();
-        TestUtils.testChain();
+//        TestUtils.testChain();
+        TestUtils.testCommand();
     }
 }
