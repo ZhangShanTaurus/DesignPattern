@@ -18,6 +18,7 @@ public class Main {
 //        TestUtils.testFacade();
 //        TestUtils.testBridge();
 //        TestUtils.testComposite();
-        TestUtils.testFlyweight();
+//        TestUtils.testFlyweight();
+        TestUtils.testTemplate();
     }
 }
