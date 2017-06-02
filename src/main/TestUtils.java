@@ -24,6 +24,8 @@ import factory_simple.SimpleFactory;
 import flyweight.Direction;
 import flyweight.Flyweight;
 import flyweight.FlyweightFactory;
+import memento.Caretaker;
+import memento.Originator;
 import observer.ConcreteObserver;
 import observer.ConcreteSubject;
 import observer.IObserver;
@@ -356,5 +358,23 @@ public class TestUtils {
         command.setReceiver(receiver);
         invoke.setCommand(command);
         invoke.executeCommand("拌凉菜");
+    }
+
+    protected static void testMemento() {
+        Originator ori = new Originator();
+        Caretaker caretaker = new Caretaker();
+        ori.setName("张三");
+        ori.setAge(25);
+        ori.setAddress("河北");
+        System.out.println("初始化状态:\n" + ori);
+
+        caretaker.setMemento("001", ori.createMemento());
+        ori.setName("李四");
+        ori.setAge(30);
+        ori.setAddress("北京");
+        System.out.println("修改后状态:\n" + ori);
+
+        ori.restoreMemento(caretaker.getMemento("001"));
+        System.out.println("恢复后状态:\n" + ori);
     }
 }
