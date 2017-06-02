@@ -21,6 +21,8 @@ public class Main {
 //        TestUtils.testFlyweight();
 //        TestUtils.testTemplate();
 //        TestUtils.testChain();
-        TestUtils.testCommand();
+//        TestUtils.testCommand();
+        TestUtils.testMemento();
+
     }
 }
