@@ -39,6 +39,9 @@ import singleton.DoubleCheckSingleton;
 import singleton.EnumSingleton;
 import singleton.SingletonHolder;
 import strategy.*;
+import template.AbstractClass;
+import template.ConcreteClassA;
+import template.ConcreteClassB;
 
 import java.io.IOException;
 import java.lang.reflect.Proxy;
@@ -303,5 +306,14 @@ public class TestUtils {
         System.out.println("复合享元角色是否可以共享:" + (flyweight4 == flyweight5));
 
         System.out.println("享元角色数量为:" + flyweightFactory.getFlyweightCount());
+    }
+
+    protected static void testTemplate() {
+        AbstractClass abstractClass;
+        abstractClass = new ConcreteClassA();
+        abstractClass.templateMethod();
+        System.out.println();
+        abstractClass = new ConcreteClassB();
+        abstractClass.templateMethod();
     }
 }
