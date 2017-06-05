@@ -23,6 +23,7 @@ public class Main {
 //        TestUtils.testChain();
 //        TestUtils.testCommand();
 //        TestUtils.testMemento();
-        TestUtils.testState();
+//        TestUtils.testState();
+        TestUtils.testVisitor();
     }
 }

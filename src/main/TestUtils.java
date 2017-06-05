@@ -42,12 +42,12 @@ import proxy_static.ToyMakerProxy;
 import singleton.DoubleCheckSingleton;
 import singleton.EnumSingleton;
 import singleton.SingletonHolder;
-import state.*;
 import strategy.*;
 import strategy.Context;
 import template.AbstractClass;
 import template.ConcreteClassA;
 import template.ConcreteClassB;
+import visitor.*;
 
 import java.io.IOException;
 import java.lang.reflect.Proxy;
@@ -388,5 +388,16 @@ public class TestUtils {
         context.openDoor();
         context.run();
         context.stop();
+    }
+
+    protected static void testVisitor() {
+        IElement food = new ElementFood("麻婆豆腐", 15);
+        IElement drink = new ElementDrink("红茶", 6);
+        Menu menu = new Menu();
+        menu.addElement(food);
+        menu.addElement(drink);
+        menu.accept(new VisitorCashier("张三"));
+        System.out.println();
+        menu.accept(new VisitorCook("李四"));
     }
 }
