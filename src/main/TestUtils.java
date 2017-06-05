@@ -42,7 +42,9 @@ import proxy_static.ToyMakerProxy;
 import singleton.DoubleCheckSingleton;
 import singleton.EnumSingleton;
 import singleton.SingletonHolder;
+import state.*;
 import strategy.*;
+import strategy.Context;
 import template.AbstractClass;
 import template.ConcreteClassA;
 import template.ConcreteClassB;
@@ -376,5 +378,15 @@ public class TestUtils {
 
         ori.restoreMemento(caretaker.getMemento("001"));
         System.out.println("恢复后状态:\n" + ori);
+    }
+
+    protected static void testState() {
+        state.Context context = new state.Context();
+        context.closeDoor();
+        context.run();
+        context.stop();
+        context.openDoor();
+        context.run();
+        context.stop();
     }
 }
