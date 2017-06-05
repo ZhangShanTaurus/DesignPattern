@@ -9,6 +9,7 @@ import chain_of_responsibility.*;
 import command.*;
 import composite.FakeUtil;
 import decorator.*;
+import decorator.Component;
 import facade.FacadeGoOut;
 import facade.FacadeSleep;
 import facade.IFacade;
@@ -24,6 +25,7 @@ import factory_simple.SimpleFactory;
 import flyweight.Direction;
 import flyweight.Flyweight;
 import flyweight.FlyweightFactory;
+import mediator.*;
 import memento.Caretaker;
 import memento.Originator;
 import observer.ConcreteObserver;
@@ -48,6 +50,7 @@ import template.AbstractClass;
 import template.ConcreteClassA;
 import template.ConcreteClassB;
 import visitor.*;
+import visitor.Menu;
 
 import java.io.IOException;
 import java.lang.reflect.Proxy;
@@ -399,5 +402,25 @@ public class TestUtils {
         menu.accept(new VisitorCashier("张三"));
         System.out.println();
         menu.accept(new VisitorCook("李四"));
+    }
+
+    protected static void testMediator() {
+        ConcreteMediator mediator = new ConcreteMediator();
+        ColleagueSchoolmate zhangSan = new ColleagueSchoolmate("张三", mediator);
+        ColleagueMonitor monitor = new ColleagueMonitor("王班长", mediator);//班长
+        ColleagueTeacher teacher = new ColleagueTeacher("李老师", mediator);//老师
+        ColleagueRector rector = new ColleagueRector("赵校长", mediator);//校长
+        mediator.setSchoolmate(zhangSan);
+        mediator.setMonitor(monitor);
+        mediator.setTeacher(teacher);
+        mediator.setRector(rector);
+        zhangSan.setMsg("你好，我是张山");
+        monitor.setMsg("你好，我是班长，欢迎来到一班。");
+        mediator.chat(zhangSan, monitor);
+        mediator.addColleague(zhangSan);
+        mediator.addColleague(monitor);
+        mediator.addColleague(teacher);
+        mediator.addColleague(rector);
+        mediator.notify(rector, "周一不上课，放假一天!");
     }
 }
