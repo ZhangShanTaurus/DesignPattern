@@ -26,6 +26,7 @@ public class Main {
 //        TestUtils.testState();
 //        TestUtils.testVisitor();
 //        TestUtils.testMediator();
-        TestUtils.testInterpreter();
+//        TestUtils.testInterpreter();
+        TestUtils.testIterator();
     }
 }
