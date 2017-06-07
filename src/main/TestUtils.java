@@ -6,10 +6,12 @@ import adapter.Target;
 import bridge.*;
 import builder.*;
 import chain_of_responsibility.*;
-import command.*;
+import command.ConcreteCommand;
+import command.IReceiver;
+import command.Invoke;
+import command.ReceiverImp;
 import composite.FakeUtil;
 import decorator.*;
-import decorator.Component;
 import facade.FacadeGoOut;
 import facade.FacadeSleep;
 import facade.IFacade;
@@ -26,6 +28,10 @@ import flyweight.Direction;
 import flyweight.Flyweight;
 import flyweight.FlyweightFactory;
 import interpreter.GrammarParser;
+import iterator.ConcreteAggregateIn;
+import iterator.ConcreteAggregateOut;
+import iterator.IAggregate;
+import iterator.IIterator;
 import mediator.*;
 import memento.Caretaker;
 import memento.Originator;
@@ -46,12 +52,10 @@ import singleton.DoubleCheckSingleton;
 import singleton.EnumSingleton;
 import singleton.SingletonHolder;
 import strategy.*;
-import strategy.Context;
 import template.AbstractClass;
 import template.ConcreteClassA;
 import template.ConcreteClassB;
 import visitor.*;
-import visitor.Menu;
 
 import java.io.IOException;
 import java.lang.reflect.Proxy;
@@ -446,5 +450,26 @@ public class TestUtils {
                 System.out.println(input + ",语法错误，请输入正确的表达式！");
             }
         }
+    }
+
+    protected static void testIterator() {
+        String[] strings = {"家", "和", "万", "事", "兴"};
+        //使用外部迭代子
+        IAggregate aggregate = new ConcreteAggregateOut(strings);
+        //使用内部迭代子
+//        IAggregate aggregate = new ConcreteAggregateIn(strings);
+        IIterator iIterator = aggregate.createIterator();
+        System.out.println("原数据为:");
+        for (String s : strings) {
+            System.out.print(s + ",");
+        }
+        iIterator.first();
+        System.out.println("\n首元素:" + iIterator.current());
+        iIterator.last();
+        System.out.println("尾元素:" + iIterator.current());
+        System.out.println("当前元素:" + iIterator.current());
+        System.out.println("是否有下一个元素:" + iIterator.hasNext());
+        iIterator.next();
+        System.out.println("下一个元素:" + iIterator.current());
     }
 }
